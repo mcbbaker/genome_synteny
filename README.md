@@ -16,7 +16,9 @@ Blast the sequences against the database:
 > blastp -query all.ahrd.pass.gl.pep.fasta -db all.prot.db -out all-by-all-hits.blast -outfmt 6 -num_threads 60 -evalue 1e-20 2> blastp.err
 
 ## 2) Remove Blacklisted Genes
-Perform a case-insensitive grep with a file containing blacklisted gene descriptions against functional annotation for all genomes:
+Use if there are certain types of genes that you want to be excluded from the syntenic blocks. For example, we keep a text file with common functional annotation descriptions for repeat-related genes that we want to be excluded. If choosing to find blacklisted genes based on descriptions, must have the functional annotation for the genes. 
+
+Get the genes by performing a grep against the functional annotation for all genomes:
 > grep -if freq-blacklist.txt all-ahrd-genes.tsv > genes-remove-description
 
 > less genes-remove-description | cut -f 1 > genes-remove-id
