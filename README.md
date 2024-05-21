@@ -1,12 +1,12 @@
 # genome-synteny
 A workflow for obtaining syntenic blocks from annotated genome assemblies.
 ## Data Needed
-- Fasta file containing peptide sequences for annotated genes 
-- Annotated genes in gff3 format
+- For each genome, a fasta file containing peptide sequences for annotated genes 
+- For each genome, annotated genes in gff3 format
 - (_Optional_) Text file containing blacklisted descriptions for genes (e.g. "retrotran"), one description on each line
 
 ## 1) All-By-All Blast
-Create and execute shell script that combines all fasta files into one file:
+Create and execute a shell script that concatenates all peptide fasta files:
 > ./cmd.sh
 
 Create a blast database from these sequences:
@@ -16,7 +16,7 @@ Blast the sequences against the database:
 > blastp -query all.ahrd.pass.gl.pep.fasta -db all.prot.db -out all-by-all-hits.blast -outfmt 6 -num_threads 60 -evalue 1e-20 2> blastp.err
 
 ## 2) Remove Blacklisted Genes
-Use if there are certain types of genes that you want to be excluded from the syntenic blocks. For example, we keep a text file with common functional annotation descriptions for repeat-related genes that we want to be excluded. If choosing to find blacklisted genes based on descriptions, must have the functional annotation for the genes. 
+Perform if there are certain types of genes that you want to be excluded from the syntenic blocks. If choosing to find blacklisted genes based on descriptions, must have the functional annotation for the genes. 
 
 Get the genes by performing a grep against the functional annotation for all genomes:
 > grep -if freq-blacklist.txt all-ahrd-genes.tsv > genes-remove-description
@@ -30,10 +30,10 @@ Remove blast hits if they contain any blacklisted gene as either the subject or 
 Remove blast hits where the subject or query contains a non-primary transcript of the gene (not .1):
 > python3 strip-primary.py removed-all-by-all-hits.blast > strip-removed-all-by-all-hits.blast
 
-Get the genes for each genome:
+Extract the genes from the gff3 for each genome:
 > less Lod.1TUR.ahrd.pass.gl.gff3 | grep gene > Lod-genes
 
-Format the genes to fit the MCScanX criteria: 
+For each genome, format the genes to fit the MCScanX criteria and append to an 'all.gff' file: 
 > python3 prep-gff.py Lod-genes lo > all.gff
 
 > python3 prep-gff.py Ler-genes le >> all.gff
