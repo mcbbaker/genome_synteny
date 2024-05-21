@@ -27,7 +27,7 @@ Remove blast hits if they contain any blacklisted gene as either the subject or 
 > python3 remove-blast-hits.py all-by-all-hits.blast genes-remove-id > removed-all-by-all-hits.blast
 
 ## 3) Prepare .blast and .gff for MCScanX
-Remove blast hits where the subject or query contains a non-primary transcript of the gene (not .1):
+Remove blast hits where the subject or query contains a non-primary transcript of the gene (not .1). This script also strips the transcript from the subject and query to conform with MCScanX criteria:
 > python3 strip-primary.py removed-all-by-all-hits.blast > strip-removed-all-by-all-hits.blast
 
 Extract the genes from the gff3 for each genome:
