@@ -1,4 +1,6 @@
 # genome-synteny
+**_(Work Related)_**
+
 A workflow for obtaining syntenic blocks from annotated genome assemblies using MCScanX.
 ## Data Needed
 - For each genome, a fasta file containing peptide sequences for annotated genes 
