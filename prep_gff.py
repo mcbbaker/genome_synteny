@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # purpose: prep file that contains gff3 info (grepped for 'gene') to put in the format to run mcscanx
-# usage: python3 prep-gff.py gff-file sp-name (ie 'lc', NOT with a number)
+# usage: python3 prep_gff.py gff-file sp-name (ie 'lc', NOT with a number)
 
 import sys
 import re
