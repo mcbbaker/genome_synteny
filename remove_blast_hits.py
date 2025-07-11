@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # purpose: remove blast hits that contain a gene id (given in a file of gene ids to remove)
-# usage: python3 remove-blast-hits.py blast-file gene-ids
+# usage: python3 remove_blast_hits.py blast-file gene-ids
 
 import sys
 
