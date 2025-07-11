@@ -1,4 +1,4 @@
-# genome-synteny
+# genome_synteny
 
 A workflow for generating syntenic blocks from annotated genome assemblies using MCScanX.
 ## Data Needed
@@ -37,7 +37,7 @@ less genes-remove-description | cut -f 1 > genes-remove-id
 ```
 Remove BLAST hits if they contain any blacklisted gene as either the subject or query:
 ```
-python3 remove-blast-hits.py all-by-all-hits.blast genes-remove-id > removed-all-by-all-hits.blast
+python3 remove_blacklist_hits.py all-by-all-hits.blast genes-remove-id > removed-all-by-all-hits.blast
 ```
 
 ## 3) Prepare .blast and .gff for MCScanX
@@ -46,7 +46,7 @@ Remove BLAST hits where the subject or query contains a non-primary transcript o
 python3 remove_nonprimary_hits.py removed-all-by-all-hits.blast > strip-removed-all-by-all-hits.blast
 ```
 
-Extract the genes from the gff3 for each genome:
+Extract the genes from the GFF3 for each genome:
 ```
 less Lod.1TUR.ahrd.pass.gl.gff3 | grep gene > Lod-genes
 ```
@@ -67,4 +67,9 @@ Run MCScanX with default parameters:
 MCScanX ./all > MCScanX.log 2> MCScanX.err
 ```
 
+## 5) Filter
+Filter the blocks based on score thresholds for intra-chromosomal and inter-chromosomal blocks:
+```
+python3 intra_inter_filter.py all.collinearity 1000 5000 > 1k5k-all.collinearity
+```
 
