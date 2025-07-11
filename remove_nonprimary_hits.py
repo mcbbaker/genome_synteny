@@ -2,7 +2,7 @@
 
 # purpose: remove all blast hits that contain a query or subject with a non-primary transcript (only hits with both the query and subject
 # being the primary transcript .1 are retained). also strip the transcript from query and subject to conform with mcscanx criteria.  
-# usage: python3 filter_nonprimary_hits.py blast-hits
+# usage: python3 remove_nonprimary_hits.py blast-hits
 
 import sys
 import re
