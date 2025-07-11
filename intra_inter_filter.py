@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # usage: python3 intra_inter_filter.py collinearity-file same-chrom-score diff-chrom-score
 # purpose: removes alignments from an MCScanX-derived collinearity file that have a score less than the score provided as input to the script for each type
 #          (blocks between same chromosome and blocks between different chromosomes). blocks between different chromosomes tend to need to
