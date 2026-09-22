@@ -13,7 +13,7 @@ _Optional_, if there is a blacklist:
 ## 1) All-By-All Blast
 Create and execute a shell script that concatenates all protein FASTA files:
 ```
-./cmd.sh
+cat Lod.1TUR.ahrd.pass.gl.pep.fasta Ler.1DRT.ahrd.pass.gl.pep.fasta > all.ahrd.pass.gl.pep.fasta
 ```
 
 Create a BLAST database from these sequences:
